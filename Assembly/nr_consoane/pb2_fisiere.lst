@@ -1,0 +1,79 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start 
+     4                                  
+     5                                  extern exit,fopen,fread,printf              
+     6                                  import exit msvcrt.dll    
+     7                                  import fopen msvcrt.dll
+     8                                  import fread msvcrt.dll
+     9                                  import printf msvcrt.dll
+    10                                  
+    11                                  segment data use32 class=data
+    12 00000000 7062322E74787400          filename db "pb2.txt", 0      ;numele fisierului care va fi deschis 
+    13 00000008 7200                      open_mode db "r", 0           ;modul de deschidere al fisierului, in acest caz "r"-doar pentru citire
+    14                                    
+    15 0000000A FFFFFFFF                  file_descriptor dd -1         ;variabila in care vom salva descriptorul fisierului - necesar pentru referirea la fisier
+    16                                    len equ 100                   ;constanta care imi indica nr max de elemente citite din fisier
+    17 0000000E 00<rept>                  text times len db 0           ; sirul in care se va citi textul din fisier
+    18                                    
+    19 00000072 4E756D6172756C2064-       format_afisare db "Numarul de consoane din textul dat este: %d", 0
+    19 0000007B 6520636F6E736F616E-
+    19 00000084 652064696E20746578-
+    19 0000008D 74756C206461742065-
+    19 00000096 7374653A20256400   
+    20                                  ;2. Se da un fisier text. Sa se citeasca continutul fisierului, sa se contorizeze numarul de consoane si sa se afiseze aceasta valoare. Numele fisierului text este definit in segmentul de date. 
+    21                                  segment code use32 class=code
+    22                                      start:
+    23                                          ;urmeaza apel fopen
+    24                                          ;functia va returna in EAX descriptorul fisierului sau 0 in caz de eroare
+    25                                          ;FILE *fopen(const char *filename,const char *mode);
+    26                                          
+    27 00000000 68[08000000]                    push dword open_mode
+    28 00000005 68[00000000]                    push dword filename
+    29 0000000A FF15[00000000]                  call [fopen] 
+    30 00000010 83C408                          add esp, 4*2        ;refac dimensiunea stivei
+    31                                          
+    32 00000013 83F800                          cmp eax, 0
+    33 00000016 7469                            je final            ;daca a aparut o eroare in deschiderea fisierului, se va termia programul
+    34                                          
+    35 00000018 A3[0A000000]                    mov [file_descriptor],eax   ;imi salvez in variabile file_descriptor valoarea returnata de fopen
+    36                                          
+    37                                          ;citirea din fisier cu apelul fread
+    38                                          ;size_t fread(void *buffer,size_t size,size_t count,FILE *stream);
+    39                                          
+    40 0000001D FF35[0A000000]                  push dword [file_descriptor]    ;am nevoie de valoarea de la offsetul lui file_descriptor
+    41 00000023 6A64                            push dword len
+    42 00000025 6A01                            push dword 1
+    43 00000027 68[0E000000]                    push dword text
+    44 0000002C FF15[00000000]                  call [fread]
+    45 00000032 83C410                          add esp, 4*4   
+    46                                          ;dupa acest apel de functie, in eax voi avea numarul de caractere citite din fisier
+    47                                          
+    48 00000035 BE00000000                      mov esi, 0      ;voi folosi esi pentru parcurgerea sirului byte cu byte
+    49 0000003A 89C1                            mov ecx, eax    ;in ecx voi avea acum nr de caractere citite din fisier
+    50 0000003C BB00000000                      mov ebx, 0      ;ebx voi face numararea consoanelor
+    51                                      repeta:
+    52 00000041 80BE[0E000000]61                cmp byte [text+esi],'a'
+    53 00000048 7425                            je vocala
+    54 0000004A 80BE[0E000000]65                cmp byte [text+esi],'e'
+    55 00000051 741C                            je vocala
+    56 00000053 80BE[0E000000]69                cmp byte [text+esi],'i'
+    57 0000005A 7413                            je vocala
+    58 0000005C 80BE[0E000000]6F                cmp byte [text+esi],'o'
+    59 00000063 740A                            je vocala
+    60 00000065 80BE[0E000000]75                cmp byte [text+esi],'u'
+    61 0000006C 7401                            je vocala
+    62 0000006E 43                              inc ebx         ;pe acest nivel de cod se va ajunge doar in cazul in care caracterul curent este consoana
+    63                                      vocala:
+    64 0000006F 46                              inc esi
+    65 00000070 E2CF                            loop repeta
+    66                                      
+    67                                      ;afisare numarului de consoane cu printf 
+    68                                      ;printf(const char *format [,argument]...)
+    69 00000072 53                              push dword ebx
+    70 00000073 68[72000000]                    push dword format_afisare
+    71 00000078 FF15[00000000]                  call [printf]
+    72 0000007E 83C408                          add esp, 4*2
+    73                                      final:
+    74 00000081 6A00                            push    dword 0     
+    75 00000083 FF15[00000000]                  call    [exit]       

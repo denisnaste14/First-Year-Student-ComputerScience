@@ -1,0 +1,21 @@
+[2020-04-03 19:36:12] [info] Start Program:
+Path:"D:\\ubb anul I\\sem2\\PROGRAMARE ORIENTATA OBIECT-oop\\laboratoare\\lab6-7\\Admin_bloc\\Debug\\Admin_bloc.exe"
+Arguments:
+Working directory: "D:\\ubb anul I\\sem2\\PROGRAMARE ORIENTATA OBIECT-oop\\laboratoare\\lab6-7\\Admin_bloc\\Admin_bloc\\"
+Modules: Selected: D:\ubb anul I\sem2\PROGRAMARE ORIENTATA OBIECT-oop\laboratoare\lab6-7\Admin_bloc\Debug\Admin_bloc.exe Excluded: 
+Sources: Selected: D:\ubb anul I\sem2\PROGRAMARE ORIENTATA OBIECT-oop\laboratoare\lab6-7\Admin_bloc\Admin_bloc Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: binary C:\Users\denis\AppData\Local\Temp\hwqkxktw.kfg 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2020-04-03 19:36:12] [info] Module: D:\ubb anul I\sem2\PROGRAMARE ORIENTATA OBIECT-oop\laboratoare\lab6-7\Admin_bloc\Debug\Admin_bloc.exe is selected because it matches selected pattern: D:\ubb anul I\sem2\PROGRAMARE ORIENTATA OBIECT-oop\laboratoare\lab6-7\Admin_bloc\Debug\Admin_bloc.exe
+[2020-04-03 19:36:12] [info] ----------------------------------------------------
+[2020-04-03 19:36:12] [info] Coverage binary generated in file: C:\Users\denis\AppData\Local\Temp\hwqkxktw.kfg
+[2020-04-03 19:36:12] [info] ----------------------------------------------------

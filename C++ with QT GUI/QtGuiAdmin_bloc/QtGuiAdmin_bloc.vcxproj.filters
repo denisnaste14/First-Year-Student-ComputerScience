@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files\Domeniu">
+      <UniqueIdentifier>{cace5dd4-cf10-4ad4-b168-a5507106db58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Repository">
+      <UniqueIdentifier>{5826b1bb-ea2e-41b7-b3fe-e219b26155e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Service">
+      <UniqueIdentifier>{5037b43a-022f-4161-bfa5-507bc48fd51b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Validator">
+      <UniqueIdentifier>{ec4c437f-393a-498f-98c4-7e68a11bba6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Undo">
+      <UniqueIdentifier>{0ca023fc-d13c-4afb-84df-4f15070388a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{c7a663b0-8179-4df9-9d6c-88f4e6804818}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CosGUI">
+      <UniqueIdentifier>{525ab3e9-f233-475e-93c0-d8229d44dc72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CosReadOnlyGUI">
+      <UniqueIdentifier>{9afef5a8-0f92-43fc-bac1-390df46950b1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QtGuiAdmin_bloc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Locatar.cpp">
+      <Filter>Source Files\Domeniu</Filter>
+    </ClCompile>
+    <ClCompile Include="Repo.cpp">
+      <Filter>Source Files\Repository</Filter>
+    </ClCompile>
+    <ClCompile Include="Service.cpp">
+      <Filter>Source Files\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Validator.cpp">
+      <Filter>Source Files\Validator</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CosGUI.cpp">
+      <Filter>Source Files\CosGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CosRDOnlyGUI.cpp">
+      <Filter>Source Files\CosReadOnlyGUI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="QtGuiAdmin_bloc.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="QtGuiAdmin_bloc.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="QtGuiAdmin_bloc.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Locatar.h">
+      <Filter>Source Files\Domeniu</Filter>
+    </ClInclude>
+    <ClInclude Include="Repo.h">
+      <Filter>Source Files\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>Source Files\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Validator.h">
+      <Filter>Source Files\Validator</Filter>
+    </ClInclude>
+    <ClInclude Include="Undo.h">
+      <Filter>Source Files\Undo</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Source Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CosGUI.h">
+      <Filter>Source Files\CosGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Cos.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CosRDOnlyGUI.h">
+      <Filter>Source Files\CosReadOnlyGUI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="loc.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

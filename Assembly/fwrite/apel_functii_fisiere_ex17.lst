@@ -1,0 +1,74 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start 
+     4                                  
+     5                                  extern exit,scanf,fopen,fwrite,printf             
+     6                                  import exit msvcrt.dll 
+     7                                  import scanf msvcrt.dll
+     8                                  import fopen msvcrt.dll
+     9                                  import fwrite msvcrt.dll  
+    10                                  import printf msvcrt.dll 
+    11                                                            
+    12                                  segment data use32 class=data
+    13 00000000 7700                        mod_acces db 'w', 0
+    14 00000002 657831372E74787400          filename db 'ex17.txt', 0
+    15 0000000B 00000000                    file_descriptor dd 0
+    16                                      
+    17 0000000F 256400                      format db '%d', 0
+    18 00000012 01000000                    n dd 1
+    19                                      
+    20 00000016 4E756D61723D2000            mesaj_citire db 'Numar= ', 0
+    21                                      
+    22 0000001E 0700                        divizor7 dw 7
+    23                                    
+    24                                  ;17. Se da un nume de fisier (definit in segmentul de date). Sa se creeze un fisier cu numele dat, apoi sa se citeasca de la tastatura numere si sa se scrie din valorile citite in fisier numerele divizibile cu 7, pa
+    25                                  segment code use32 class=code
+    26                                      start:
+    27                                      
+    28                                          ;fopen(const char* nume_fisier, const char * mod_acces)
+    29 00000000 68[00000000]                    push dword mod_acces
+    30 00000005 68[02000000]                    push dword filename
+    31 0000000A FF15[00000000]                  call [fopen]
+    32 00000010 83C408                          add esp, 4*2
+    33                                          
+    34 00000013 A3[0B000000]                    mov [file_descriptor], eax
+    35                                          
+    36                                      bucla:
+    37 00000018 833D[12000000]00                cmp [n], dword 0
+    38 0000001F 745A                            je dupa_bucla
+    39                                          
+    40                                          ;printf-mesaj pentru citire
+    41 00000021 68[16000000]                    push dword mesaj_citire
+    42 00000026 FF15[00000000]                  call [printf]
+    43 0000002C 83C404                          add esp, 4*1
+    44                                         
+    45                                          ;scanf(const char * format, adresa_variabila_1, ...)
+    46 0000002F 68[12000000]                    push dword n
+    47 00000034 68[0F000000]                    push dword format
+    48 00000039 FF15[00000000]                  call [scanf]
+    49 0000003F 83C408                          add esp, 4*2
+    50 00000042 833D[12000000]00                cmp [n], dword 0
+    51 00000049 7430                            je dupa_bucla
+    52                                          
+    53 0000004B A1[12000000]                    mov eax, [n]
+    54 00000050 66BA0000                        mov dx, 0
+    55 00000054 66F735[1E000000]                div word [divizor7]     ;voi avea restul in dx si catul in ax
+    56                                          
+    57 0000005B 6683FA00                        cmp dx, word 0          ;verifica daca numarul citit este divizibil cu 7 (daca restul este 0)
+    58 0000005F 7518                            jne peste
+    59                                          ;in aceasta parte se va intra doar in cazul in care dx=0
+    60                                          
+    61                                          ;fwrite(fwrite(void buffer, int size, int count, FILE stream )
+    62                                          
+    63 00000061 FF35[0B000000]                  push dword [file_descriptor]
+    64 00000067 6A01                            push 1
+    65 00000069 6A04                            push 4
+    66 0000006B 68[12000000]                    push dword n
+    67 00000070 FF15[00000000]                  call [fwrite]
+    68 00000076 83C410                          add esp, 4*4
+    69                                               
+    70                                      peste:
+    71 00000079 EB9D                            jmp bucla
+    72                                      dupa_bucla:
+    73 0000007B 6A00                            push    dword 0     
+    74 0000007D FF15[00000000]                  call    [exit]       
